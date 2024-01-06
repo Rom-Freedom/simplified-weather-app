@@ -1,9 +1,14 @@
+//https://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&appid=72e677bee4db5b6fe237cbe67e2fb8f2
+
 <script>
+import axios from 'axios'
+
     export default {
         data() {
             return {
                 city: "",
-                error: ""
+                error: "",
+                info: null
             }
         },
         computed: {
@@ -18,6 +23,9 @@
                     return false
                 }
                 this.error = ""
+
+                axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ this.city }&units=metric&appid=72e677bee4db5b6fe237cbe67e2fb8f2`)
+                    .then(res => (this.info = res))
             }
         }
     }
@@ -31,6 +39,8 @@
         <button class="weather-button" v-if="city != ''" @click="getWeather()">Get the weather</button>
         <button class="weather-button" disabled v-else="city != ''">Enter your city</button>
         <p class="error">{{ error }}</p>
+
+        <p v-show="info != null">{{ info }}</p>
     </div>
 </template>
 
