@@ -1,12 +1,18 @@
 <script>
-
+    export default {
+        data() {
+            return {
+                city: ""
+            }
+        }
+    }
 </script>
 
 <template>
     <div class="wrapper">
-        <h1 class="weather-title">Weather app</h1>
-        <p class="weather-par">Find out the weather in your city</p>
-        <input class="weather-input" type="text" placeholder="Enter your city">
+        <h1 class="weather-title">Weather app </h1>
+        <p class="weather-par">Find out the weather in {{ city == "" ? "your city": city }}</p>
+        <input class="weather-input" v-model="city" type="text" placeholder="Enter your city">
         <button class="weather-button">Get the weather</button>
     </div>
 </template>
