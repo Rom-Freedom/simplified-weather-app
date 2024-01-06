@@ -2,7 +2,22 @@
     export default {
         data() {
             return {
-                city: ""
+                city: "",
+                error: ""
+            }
+        },
+        computed: {
+            cityName() {
+                return "«" + this.city + "»"
+            }
+        },
+        methods: {
+            getWeather() {
+                if(this.city.trim().length < 2) {
+                    this.error = "Write a name of the city more than one symbol!"
+                    return false
+                }
+                this.error = ""
             }
         }
     }
@@ -11,9 +26,11 @@
 <template>
     <div class="wrapper">
         <h1 class="weather-title">Weather app </h1>
-        <p class="weather-par">Find out the weather in {{ city == "" ? "your city": city }}</p>
+        <p class="weather-par">Find out the weather in {{ city == "" ? "your city": cityName}}</p>
         <input class="weather-input" v-model="city" type="text" placeholder="Enter your city">
-        <button class="weather-button">Get the weather</button>
+        <button class="weather-button" v-if="city != ''" @click="getWeather()">Get the weather</button>
+        <button class="weather-button" disabled v-else="city != ''">Enter your city</button>
+        <p class="error">{{ error }}</p>
     </div>
 </template>
 
@@ -58,5 +75,18 @@
 }
 .weather-button:hover {
     transform: scale(1.05) translateY(-1.5px);
+}
+.weather-button:disabled {
+    background: #775f1a;
+    cursor: not-allowed;
+    color: #aeaec9;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.error {
+    color: #dc1010a1;
+    font-size: 20px;
 }
 </style>
