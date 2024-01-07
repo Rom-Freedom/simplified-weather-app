@@ -52,7 +52,7 @@ import axios from 'axios'
         <button class="weather-button" disabled v-else="city != ''">Enter your city</button>
         <p class="error">{{ error }}</p>
 
-         <div v-if="info != null">
+         <div class="output-res" v-if="info != null">
             <p>{{ showTemp }}</p>
             <p>{{ showFeelsLike }}</p>
             <p>{{ showMinTemp }}</p>
@@ -115,5 +115,8 @@ import axios from 'axios'
 .error {
     color: #dc1010a1;
     font-size: 20px;
+}
+.output-res p{
+    margin-bottom: 10px;
 }
 </style>
