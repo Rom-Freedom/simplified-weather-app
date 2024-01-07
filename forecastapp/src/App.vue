@@ -119,4 +119,7 @@ import axios from 'axios'
 .output-res p{
     margin-bottom: 10px;
 }
+.output-res p:last-child {
+    margin-bottom: 0px;
+}
 </style>
